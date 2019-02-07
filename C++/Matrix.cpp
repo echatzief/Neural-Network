@@ -3,9 +3,15 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
-#include <math.h>
+#include <cmath>
+
 
 using namespace std;
+int random (int low, int high) {
+    if (low > high) return high;
+    return low + (std::rand() % (high - low + 1));
+}
+
 Matrix::Matrix(){
     this->rows=0;
     this->cols=0;
@@ -15,7 +21,7 @@ Matrix::Matrix(int rows,int cols){
     this->rows=rows;
     this->cols=cols;
     
-    this->data = new double*[this->rows];
+this->data = new double*[this->rows];
     
     //Memory allocate for the array
     for(int i=0;i<this->rows;i++){
@@ -70,10 +76,10 @@ Matrix * Matrix::substract(Matrix *a,Matrix *b){
 }
 //Generate random values
 void Matrix::randomize(){
-    srand(time(NULL)); 
+     
     for(int i=0;i<this->rows;i++){
         for(int j=0;j<this->cols;j++){
-            this->data[i][j]=-1 + rand() % 3; //Randomize number between -1,0,1
+            this->data[i][j]=random(-1,1); //Randomize number between -1,0,1
         }
     }
 }
@@ -130,12 +136,12 @@ Matrix * Matrix::multiply(Matrix *a,Matrix *b){
 }
 
 //Transpose a matrix
-Matrix *Matrix::tranpose(Matrix *a){
+Matrix * Matrix::transpose(Matrix *a){
     Matrix *result = new Matrix(a->cols,a->rows);
 
     for(int i=0;i<a->cols;i++){
         for(int j=0;j<a->rows;j++){
-            result->data[i][j]=a->data[i][j];
+            result->data[i][j]=a->data[j][i];
         }
     }
     return result;
@@ -163,3 +169,5 @@ Matrix * Matrix::map(double (*func)(double),Matrix *a){
     }
     return m;
 }
+
+

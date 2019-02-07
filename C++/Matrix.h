@@ -18,7 +18,7 @@ class Matrix{
         void multiply(Matrix *m); //Multiply two matrixes elementwise
         void multiply(double n); //Multiply a matrix with number(Scaler)
         static Matrix * multiply(Matrix *a,Matrix *b); //Normal multiplication between two matrixes
-        static Matrix * tranpose(Matrix *a); //Transpose a matrix
+        static Matrix * transpose(Matrix *a); //Transpose a matrix
         static double sigmoid(double n);
         static double dsigmoid(double n);
         void map(double (*func)(double));

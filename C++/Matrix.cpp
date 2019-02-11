@@ -5,7 +5,6 @@
 #include <ctime>
 #include <cmath>
 
-
 using namespace std;
 int random (int low, int high) {
     if (low > high) return high;
@@ -169,5 +168,18 @@ Matrix * Matrix::map(double (*func)(double),Matrix *a){
     }
     return m;
 }
+Matrix * Matrix::fromArray(int *array,int length){
+   
+    Matrix *newArr = new Matrix(length,1);
+    int k=0;
+    for(int i=0;i<newArr->rows;i++){
+        for(int j=0;j<newArr->cols;j++){
+	    newArr->data[i][j]=array[k];
+	    k++;
+	}
+    }
+    return newArr;
+}
+int * Matrix::toArray(Matrix *m){
 
-
+}

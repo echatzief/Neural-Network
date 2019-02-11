@@ -16,6 +16,8 @@ class NeuralNetwork{
     public:
 	NeuralNetwork();
 	NeuralNetwork(int inN,int hidN,int outN);
+	feedForward(int *array);
+	
 };
 
 

@@ -117,5 +117,13 @@ int main(){
     ress->printMatrix();
     cout<<endl;
 
+    int * arr = new int[4];
+    arr[0]=1;
+    arr[1]=2;
+    arr[2]=3;
+    arr[3]=4;
+
+    Matrix *tessq = Matrix::fromArray(arr,4);
+    tessq->printMatrix();
     return 0;
 }

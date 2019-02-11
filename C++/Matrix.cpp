@@ -168,18 +168,30 @@ Matrix * Matrix::map(double (*func)(double),Matrix *a){
     }
     return m;
 }
-Matrix * Matrix::fromArray(int *array,int length){
+Matrix * Matrix::fromArray(double *array,int length){
    
     Matrix *newArr = new Matrix(length,1);
     int k=0;
     for(int i=0;i<newArr->rows;i++){
         for(int j=0;j<newArr->cols;j++){
-	    newArr->data[i][j]=array[k];
-	    k++;
-	}
+	        newArr->data[i][j]=array[k];
+	        k++;
+	    }
     }
     return newArr;
 }
-int * Matrix::toArray(Matrix *m){
+double * Matrix::toArray(Matrix *m){
+    int howMuchElements=m->rows*m->cols;
+    double *arr = new double[howMuchElements];
 
+    int k=0;
+    cout<<"Elem: "<<howMuchElements<<endl;
+
+    for(int i=0;i<m->rows;i++){
+        for(int j=0;j<m->cols;j++){
+	        arr[k]=m->data[i][j];
+            k++;
+	    }
+    }
+    return arr;
 }

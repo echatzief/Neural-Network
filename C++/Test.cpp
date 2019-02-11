@@ -117,7 +117,7 @@ int main(){
     ress->printMatrix();
     cout<<endl;
 
-    int * arr = new int[4];
+    double * arr = new double[4];
     arr[0]=1;
     arr[1]=2;
     arr[2]=3;
@@ -125,5 +125,12 @@ int main(){
 
     Matrix *tessq = Matrix::fromArray(arr,4);
     tessq->printMatrix();
+    k1->printMatrix();
+    double *dest = new double[k1->rows*k1->cols];
+    dest=Matrix::toArray(k1);
+
+    for(int i=0;i<k1->rows*k1->cols;i++){
+        cout<<dest[i]<<endl;
+    }
     return 0;
 }

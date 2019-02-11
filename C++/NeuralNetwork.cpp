@@ -39,4 +39,23 @@ NeuralNetwork::NeuralNetwork(int inN,int hidN,int outN){
 	this->weightIH->randomize();
 	this->weightHO->randomize();
 };
+double * NeuralNetwork::feedForward(double *array,int length){
+	
+	//Turn array to matrix
+	Matrix * input =Matrix::fromArray(array,length);
 
+	//Hidden layer
+	Matrix *hidden = Matrix::multiply(this->weightIH,input);
+	hidden->add(this->bias_H);
+	hidden->map(Matrix::sigmoid);
+
+	hidden->printMatrix();
+
+	//Output layer
+	Matrix *output= Matrix::multiply(this->weightHO,hidden);
+	output->add(this->bias_O);
+	output->map(Matrix::sigmoid);
+
+	//Return the output in array 
+	return Matrix::toArray(output);
+};

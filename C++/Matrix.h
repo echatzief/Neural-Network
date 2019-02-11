@@ -23,8 +23,8 @@ class Matrix{
         static double dsigmoid(double n);
         void map(double (*func)(double));
         static Matrix * map(double (*func)(double),Matrix *a);
-	static Matrix * fromArray(int *array,int length);
-	static int * toArray(Matrix * m);
+	    static Matrix * fromArray(double *array,int length);
+	    static double * toArray(Matrix * m);
 };
 
 #endif

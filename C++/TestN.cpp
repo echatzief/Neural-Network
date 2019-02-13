@@ -2,35 +2,71 @@
 #include "NeuralNetwork.h"
 #include <iostream>
 using namespace std;
+
+/*
+   We create the inputs,targets and train our neural networn in
+   order to implement XOR Gate.
+*/
 int main(){ 
 
-   NeuralNetwork * brain = new NeuralNetwork(2,2,1);
+   NeuralNetwork * brain = new NeuralNetwork(2,30,1);
    
-   cout<<"Weight Hidden: "<<endl;
-   brain->weightIH->printMatrix();
-   cout<<endl;
+   double ** inputs = new double*[4];
+   double * targets = new double[4];
 
-   cout<<"Bias Hidden: "<<endl;
-   brain->bias_H->printMatrix();
-   cout<<endl;
-
-   cout<<"Weight Output: "<<endl;
-   brain->weightHO->printMatrix();
-   cout<<endl;
-
-   cout<<"Bias Output: "<<endl;
-   brain->bias_O->printMatrix();
-   cout<<endl;
-   
-   double * test= new double[2];
-   test[0]=0;
-   test[1]=1;
-
-   double *ress = brain->feedForward(test,2);
-
-   for(int i=0;i<1;i++){
-      cout<<"Element "<<i<<" : "<<ress[i]<<endl;
+   for(int i=0;i<4;i++){
+      inputs[i]=new double[2];
    }
 
+   //We prepare the inputs,targets
+   inputs[0][0]=0;
+   inputs[0][1]=0;
+   targets[0]=0;
+
+   inputs[1][0]=1;
+   inputs[1][1]=1;
+   targets[1]=0;
+
+   inputs[2][0]=0;
+   inputs[2][1]=1;
+   targets[2]=1;
+
+   inputs[3][0]=1;
+   inputs[3][1]=0;
+   targets[3]=1;
+
+
+   //Train the network 
+   for(int i=0;i<100000;i++){
+        
+      for(int j=0;j<4;j++){
+         brain->train(inputs[j],&targets[j]);
+      }
+   }
+
+   //Test the neural 
+   double *res1=brain->feedForward(inputs[0]);
+   double *res2=brain->feedForward(inputs[1]);
+   double *res3=brain->feedForward(inputs[2]);
+   double *res4=brain->feedForward(inputs[3]);
+
+   
+   cout<<"Output from tests: "<<endl;
+   for(int i=0;i<brain->output_nodes;i++){
+      cout<<res1[i]<<endl;
+   }
+   cout<<endl;
+   for(int i=0;i<brain->output_nodes;i++){
+      cout<<res2[i]<<endl;
+   }
+   cout<<endl;
+   for(int i=0;i<brain->output_nodes;i++){
+      cout<<res3[i]<<endl;
+   }
+   cout<<endl;
+   for(int i=0;i<brain->output_nodes;i++){
+      cout<<res4[i]<<endl;
+   }
+   cout<<endl;
    return 0;
 }

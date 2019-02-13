@@ -185,7 +185,6 @@ double * Matrix::toArray(Matrix *m){
     double *arr = new double[howMuchElements];
 
     int k=0;
-    cout<<"Elem: "<<howMuchElements<<endl;
 
     for(int i=0;i<m->rows;i++){
         for(int j=0;j<m->cols;j++){
